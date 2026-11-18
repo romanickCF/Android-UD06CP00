@@ -26,10 +26,14 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         listaPersonas = PersonaProvider.cargarPersonas()
+        adapter = PersonaAdapter(listaPersonas) { persona ->
+            Toast.makeText(this, persona.nombre, Toast.LENGTH_SHORT).show()
+        }
+
 
         binding.rvPersonas.layoutManager = LinearLayoutManager(this)
+        binding.rvPersonas.itemAnimator = DefaultItemAnimator()
         binding.rvPersonas.setHasFixedSize(true)
         binding.rvPersonas.adapter = adapter
 
